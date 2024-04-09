@@ -12,8 +12,9 @@ import (
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
-		log.Println("Error in loading env file.")
+	err := godotenv.Load("config/.env")
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
 	}
 
 	database.ConnectDB()
